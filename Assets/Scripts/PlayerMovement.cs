@@ -7,6 +7,8 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public Vector2 moveValue;
+    public Vector2 jump;
+    public float jumpSpeed = 5f;
     public float speed;
 
     // Start is called before the first frame update
@@ -20,13 +22,21 @@ public class PlayerController : MonoBehaviour
         moveValue = value.Get<Vector2>();
     }
 
-    void FixedUpdate()
+    public void OnJump(InputValue value)
     {
-        Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
-
-        GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed , ForceMode.Impulse);
     }
 
+    void FixedUpdate()
+    {
+        Vector3 movement = new Vector3(moveValue.x, 0.0f);
+
+        GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+      
+    }
+
+
+    
 
 
 }
