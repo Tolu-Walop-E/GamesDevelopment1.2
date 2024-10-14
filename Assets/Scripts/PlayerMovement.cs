@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private int maxJumps = 2;
     public int jumpCount;
+    public GameObject ProjectilePrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             jumpCount = 0; // Reset jump count when landing on the ground
+        }
+    }
+
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //instantiate projectile prefab and set initial position to player position
+            Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
         }
     }
 
