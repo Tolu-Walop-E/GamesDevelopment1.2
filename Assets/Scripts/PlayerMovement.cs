@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     public Vector2 jump;
     public float jumpSpeed = 5f;
     public float speed;
+    private int maxJumps = 2;
+    public int jumpCount;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        jumpCount = 0;
     }
     // Correct method name and typo fix
     public void OnMove(InputValue value)
@@ -24,7 +26,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed , ForceMode.Impulse);
+        if (jumpCount < maxJumps)
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed , ForceMode.Impulse);
+            jumpCount++;
+        }
+        
+        
     }
 
     void FixedUpdate()
@@ -34,9 +42,15 @@ public class PlayerController : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
       
     }
-
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            jumpCount = 0; // Reset jump count when landing on the ground
+        }
+    }
 
     
-
 
 }
