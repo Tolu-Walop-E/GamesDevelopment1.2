@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - BouncyPlatform
+=======
+  - Ground
+>>>>>>> 6ff573cca83cd1ea8c73dbe70966f5badc369abd
   layers:
   - Default
   - TransparentFX
