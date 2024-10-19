@@ -13,17 +13,17 @@ public class PlayerController : MonoBehaviour
     public int jumpCount;
 
     private Rigidbody rb;
-    private float lockedZPosition = -0.344f;  
+    private float lockedZPosition = -0.344f;
 
     // Start is called before the first frame update
     void Start()
     {
         jumpCount = 0;
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
- 
+
     public void OnMove(InputValue value)
     {
         moveValue = value.Get<Vector2>();
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
 
         Vector3 currentPosition = rb.position;
-        currentPosition.z = lockedZPosition;  
+        currentPosition.z = lockedZPosition;
         rb.position = currentPosition;
     }
 
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            jumpCount = 0; 
+            jumpCount = 0;
         }
     }
 }
