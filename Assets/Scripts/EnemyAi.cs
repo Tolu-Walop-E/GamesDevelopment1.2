@@ -13,14 +13,14 @@ public class EnemyAi : MonoBehaviour
 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;  // Reference to your projectile prefab
+    public GameObject projectile;  
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    public float accuracy = 100f;  // Accuracy percentage (100 = perfect, lower = less accurate)
+    public float accuracy = 100f; 
 
-    private float checkInterval = 0.5f;  // Reduce how often we check for player
+    private float checkInterval = 0.5f; 
     private float checkTimer = 0f;
 
     private void Awake()
@@ -36,7 +36,7 @@ public class EnemyAi : MonoBehaviour
     {
         checkTimer += Time.deltaTime;
 
-        // Perform range checks only every `checkInterval`
+
         if (checkTimer >= checkInterval)
         {
             checkTimer = 0f;
@@ -93,21 +93,19 @@ public class EnemyAi : MonoBehaviour
         {
             GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
 
-            // Adjust projectile size based on enemy size
+
             projectileInstance.transform.localScale = transform.localScale * 0.5f;
 
             Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
 
-            // Calculate direction to the player with some inaccuracy
+
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
 
-            // Introduce inaccuracy by adding random deviation
+
             Vector3 inaccurateDirection = AddInaccuracy(directionToPlayer, accuracy);
 
-            // Reset velocity (in case of pooling)
             rb.velocity = Vector3.zero;
 
-            // Apply force to the projectile with inaccuracy
             rb.AddForce(inaccurateDirection * 32f, ForceMode.Impulse);
 
             alreadyAttacked = true;
@@ -120,20 +118,20 @@ public class EnemyAi : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    // Function to add inaccuracy to the projectile's direction
+
     private Vector3 AddInaccuracy(Vector3 originalDirection, float accuracy)
     {
-        // Convert accuracy percentage to an inaccuracy range
+
         float inaccuracyFactor = (100f - accuracy) / 100f;
 
-        // Add random offset to the X and Y directions (leave Z unchanged if it's a 2D plane)
+  
         float randomOffsetX = Random.Range(-inaccuracyFactor, inaccuracyFactor);
         float randomOffsetY = Random.Range(-inaccuracyFactor, inaccuracyFactor);
 
-        // Modify the original direction with inaccuracy
+
         Vector3 inaccurateDirection = new Vector3(originalDirection.x + randomOffsetX, originalDirection.y + randomOffsetY, originalDirection.z);
 
-        // Normalize the resulting vector to maintain the original magnitude
+
         return inaccurateDirection.normalized;
     }
 }
