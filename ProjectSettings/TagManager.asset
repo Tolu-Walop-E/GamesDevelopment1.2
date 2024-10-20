@@ -4,17 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - BouncyPlatform
   - Ground
   - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - GroundLayer
+  - Hitbox
   - 
   - 
   - 
