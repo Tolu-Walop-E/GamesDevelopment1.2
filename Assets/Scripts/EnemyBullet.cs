@@ -21,11 +21,21 @@ public class EnemyBullet : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the bullet hit the player
         if (collision.gameObject.CompareTag("Player"))
         {
+
+            PlayerDamage playerDamage =  collision.gameObject.GetComponent<PlayerDamage>();
+
+            if (playerDamage != null)
+            {
+
+                playerDamage.TakeDamage(damage);
+            }
             
             // Destroy the bullet after hitting the player
             Destroy(gameObject);
