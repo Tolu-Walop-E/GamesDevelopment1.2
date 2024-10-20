@@ -10,6 +10,8 @@ public class movement : MonoBehaviour
    private float verticalVelocity;
    private int jumpCounter = 2;
    public Collider[] AttackHitbox;
+   public float moveSpeed = 5f;
+   private Vector3 movementCheck;
 
    private void Start()
    {
@@ -18,6 +20,19 @@ public class movement : MonoBehaviour
 
    private void Update()
    {
+        // Get input from the player for horizontal movement (X-axis)
+        movementCheck.x = Input.GetAxisRaw("Horizontal");  // Left (-1) and Right (1)
+
+        // Zero out the other axes since movement is restricted to X-axis
+        movementCheck.y = 0f;  // No movement on Y-axis (for 3D)
+        movementCheck.z = 0f;  // No movement on Z-axis
+
+        // If the character is moving, rotate it to face the correct direction
+        if (movementCheck.x != 0)
+        {
+            RotatePlayer(movementCheck.x);
+        }
+
         if(Input.GetKeyDown(KeyCode.J))
         {
             TriggerAttack(AttackHitbox[0]);
@@ -53,6 +68,20 @@ public class movement : MonoBehaviour
 
         controller.Move(moveVector*Time.deltaTime);
    }
+
+   void RotatePlayer(float directionX)
+    {
+        if (directionX > 0) 
+        {
+            // Moving right, rotate to face right (Quaternion.identity = no rotation, facing forward)
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if (directionX < 0) 
+        {
+            // Moving left, rotate 180 degrees to face left
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+    }
 
    private void TriggerAttack (Collider col)
    {    Debug.Log(col.name);
