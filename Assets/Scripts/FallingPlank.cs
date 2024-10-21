@@ -5,6 +5,7 @@ public class FallingPlank : MonoBehaviour
 {
     public float fallSpeed = 5f; // Speed at which the cube falls
     private bool isFalling = false; // To track if the cube has started falling
+    public int damage = 50;
 
     void OnTriggerEnter(Collider other)
     {
@@ -21,12 +22,29 @@ public class FallingPlank : MonoBehaviour
         if (isFalling)
         {
             Fall();
+
         }
     }
 
     void Fall()
     {
-        // Move the cube downward with a constant speed
+        // Move the cube downward
         transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if the plank hits the player
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            PlayerDamage playerDamage = collision.gameObject.GetComponent<PlayerDamage>();
+
+            if (playerDamage != null)
+            {
+
+                playerDamage.TakeDamage(damage);
+            }
+        }
     }
 }
