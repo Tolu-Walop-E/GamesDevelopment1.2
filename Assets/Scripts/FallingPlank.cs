@@ -44,6 +44,7 @@ public class FallingPlank : MonoBehaviour
             {
 
                 playerDamage.TakeDamage(damage);
+                Destroy(gameObject);
             }
         }
     }
