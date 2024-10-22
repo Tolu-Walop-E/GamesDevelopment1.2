@@ -6,6 +6,7 @@ public class EnemyAi : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    
 
     public Vector3 walkPoint;
     bool walkPointSet;

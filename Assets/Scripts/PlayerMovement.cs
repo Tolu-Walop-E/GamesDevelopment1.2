@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float lockedZPosition = -0.344f;
     public Collider[] AttackHitbox;
     private bool isRespawning = false;  // Flag to control movement when respawning
+    public GameObject PlayerProjectile; 
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +81,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             TriggerAttack(AttackHitbox[1]);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //instantiate player projectile prefab and set initial position to player position
+            Instantiate(PlayerProjectile, transform.position, Quaternion.identity);
         }
     }
 
