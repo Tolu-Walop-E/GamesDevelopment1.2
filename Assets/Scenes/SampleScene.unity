@@ -358,7 +358,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &199011304
 BoxCollider:
@@ -2360,6 +2360,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3675711413588984600, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4998434742611187044, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -3040,7 +3044,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!1 &1021685615 stripped
 GameObject:
@@ -6051,6 +6055,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8916803760319505945, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 364435837299376671, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -6066,6 +6074,14 @@ PrefabInstance:
     - target: {fileID: 875123019927089623, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933670051294832058, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933670051294832058, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2020543230952520264, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: m_Name
@@ -6077,12 +6093,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2020543230952520264, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025646211611682482, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3675711413588984600, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1020479218}
+    - target: {fileID: 3675711413588984600, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3675711413588984600, guid: d63e9bbbcbbd5bd419260959f8242af9, type: 3}
       propertyPath: timeBetweenAttacks
       value: 1
