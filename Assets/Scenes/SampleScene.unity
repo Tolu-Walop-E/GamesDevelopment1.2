@@ -3013,7 +3013,7 @@ MonoBehaviour:
   moveValue: {x: 0, y: 0}
   jump: {x: 0, y: 0}
   jumpSpeed: 5
-  speed: 400
+  speed: 5
   jumpCount: 2
   AttackHitbox:
   - {fileID: 1096249997}
