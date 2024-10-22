@@ -27,11 +27,8 @@ public class movement : MonoBehaviour
 
 
         movementCheck.x = Input.GetAxisRaw("Horizontal");  
-
-
         movementCheck.y = 0f;  
         movementCheck.z = 0f;  
-
 
         if (movementCheck.x != 0)
         {

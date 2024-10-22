@@ -9,12 +9,12 @@ public class PlayerDamage : MonoBehaviour
     public float totalHealth = 100f;
     public Vector3 respawnPosition;  
 
-    private movement playerMovement; 
+    private PlayerController playerMovement; 
 
     void Start()
     {
 
-        playerMovement = GetComponent<movement>();
+        playerMovement = GetComponent<PlayerController>();
 
 
         if (respawnPosition == Vector3.zero)

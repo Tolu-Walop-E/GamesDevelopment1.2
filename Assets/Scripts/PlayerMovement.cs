@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private int maxJumps = 2;
     public int jumpCount;
-
+    private Vector3 movementCheck;
     private Rigidbody rb;
     private float lockedZPosition = -0.344f;
-
+    public Collider[] AttackHitbox;
     private bool isRespawning = false;  // Flag to control movement when respawning
 
     // Start is called before the first frame update
@@ -46,12 +46,71 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        movementCheck.x = Input.GetAxisRaw("Horizontal");  
+        movementCheck.y = 0f;  
+        movementCheck.z = 0f;  
+
+        if (movementCheck.x != 0)
+        {
+            RotatePlayer(movementCheck.x);
+        }
+
+        
+
         Vector3 movement = new Vector3(moveValue.x, 0.0f, 0.0f);  // Ensure Z movement is 0
         rb.AddForce(movement * speed * Time.fixedDeltaTime);
 
         Vector3 currentPosition = rb.position;
         currentPosition.z = lockedZPosition;  // Lock Z position
         rb.position = currentPosition;
+    }
+
+    void Update()
+    {
+        if (isRespawning)
+        {
+            // Skip movement logic while respawning
+            return;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            TriggerAttack(AttackHitbox[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TriggerAttack(AttackHitbox[1]);
+        }
+    }
+
+    // Attack logic
+    private void TriggerAttack(Collider col)
+    {
+        Debug.Log(col.name);
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+        foreach (Collider c in cols)
+        {
+            if (c.transform.parent.parent == transform)
+            {
+                continue;
+            }
+            else
+            {
+                Debug.Log(c.name);
+            }
+        }
+    }
+
+    void RotatePlayer(float directionX)
+    {
+        if (directionX > 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);  // Face right
+        }
+        else if (directionX < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);  // Face left
+        }
     }
 
     void OnCollisionEnter(Collision collision)
