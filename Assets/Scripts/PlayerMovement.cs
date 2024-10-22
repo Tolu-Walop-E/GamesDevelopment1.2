@@ -62,11 +62,9 @@ public class PlayerController : MonoBehaviour
         
 
         Vector3 movement = new Vector3(moveValue.x, 0.0f, 0.0f);  // Ensure Z movement is 0
-        rb.AddForce(movement * speed * Time.fixedDeltaTime);
+        Vector3 newPosition = rb.position + (movement * speed * Time.fixedDeltaTime);
 
-        Vector3 currentPosition = rb.position;
-        currentPosition.z = lockedZPosition;  // Lock Z position
-        rb.position = currentPosition;
+        rb.MovePosition(newPosition);
     }
 
     void Update()
