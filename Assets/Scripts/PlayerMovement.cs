@@ -17,12 +17,15 @@ public class PlayerController : MonoBehaviour
     public Collider[] AttackHitbox;
     private bool isRespawning = false;  // Flag to control movement when respawning
     public GameObject PlayerProjectile; 
+    private Collider playerCollider;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         jumpCount = 0;
         rb = GetComponent<Rigidbody>();
+        playerCollider = GetComponent<Collider>();
     }
 
     public void OnMove(InputValue value)
@@ -76,11 +79,11 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
-            TriggerAttack(AttackHitbox[0]);
+            TriggerAttack(AttackHitbox[0],0);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            TriggerAttack(AttackHitbox[1]);
+            TriggerAttack(AttackHitbox[1],1);
         }
         
         if (Input.GetKeyDown(KeyCode.Space))
@@ -91,19 +94,30 @@ public class PlayerController : MonoBehaviour
     }
 
     // Attack logic
-    private void TriggerAttack(Collider col)
+    private void TriggerAttack(Collider col, int type)
     {
         Debug.Log(col.name);
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Enemy"));
         foreach (Collider c in cols)
         {
-            if (c.transform.parent.parent == transform)
+            if (c.transform.parent == transform)
             {
                 continue;
             }
             else
             {
-                Debug.Log(c.name);
+                if(type == 0)
+                {
+                    c.SendMessageUpwards("TakeDamage",10);
+                }
+                else if(type == 1)
+                {
+                    c.SendMessageUpwards("TakeDamage",15);
+                }
+                else
+                {
+                    c.SendMessageUpwards("TakeDamage",0);
+                }
             }
         }
     }
