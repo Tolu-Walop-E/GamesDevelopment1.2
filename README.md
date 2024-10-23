@@ -1,17 +1,17 @@
-READ ME:\
-Welcome to Crimson Abyss.\
+**READ ME:\**
+**Welcome to Crimson Abyss.\**
 Crimson Abyss is a fast-paced, action-packed fighting platformer developed by four university students using the Unity engine. Players will explore diverse levels, fight challenging enemies, and master combat mechanics in a quest through dangerous environments.\
 GAME FEATURES:
 
--   Platformer Combat: Engage in dynamic melee and ranged combat against various enemies across beautifully crafted levels.
+-   **Platformer Combat:** Engage in dynamic melee and ranged combat against various enemies across beautifully crafted levels.
 
--   Challenging Bosses: Face off against powerful bosses that will test your skills and strategy.
+-   **Challenging Bosses:** Face off against powerful bosses that will test your skills and strategy.
 
--   Unique Levels: Explore different environments, each with its own challenges and interactive elements.
+-   **Unique Levels:** Explore different environments, each with its own challenges and interactive elements.
 
--   Abilities: Unlock new abilities and powers as you advance through the game.
+-   **Abilities:** Unlock new abilities and powers as you advance through the game.
 
-CONTROLS:
+**CONTROLS:**
 
 W ...................................Jump
 
@@ -27,11 +27,11 @@ J .....................................Punch Enemy
 
 K ....................................Kick Enemy
 
-OBJECTIVE:
+**OBJECTIVE:**
 
 Reach the end of the level.
 
-HOW TO PLAY:
+**HOW TO PLAY:**
 
 -   Navigate through levels by fighting enemies, avoiding hazards, and discovering secrets.
 
@@ -41,13 +41,13 @@ HOW TO PLAY:
 
 -   Explore the levels thoroughly to find hidden power-ups and collectibles.
 
-SYSTEM REQUIREMENTS:
+**SYSTEM REQUIREMENTS:**
 
 Latest version of a Chromium-based browser.
 
 Keyboard
 
-CREDITS:
+**CREDITS:**
 
 Toluwalope Rilwan Adesina, Mohammad Usman Khan, Maciej Dorian Lapczynski, Mithusen Selvarajah
 
