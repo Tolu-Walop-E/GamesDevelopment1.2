@@ -1,4 +1,5 @@
 **READ ME:**
+
 **Welcome to Crimson Abyss.**
 
 Crimson Abyss is a fast-paced, action-packed fighting platformer developed by four university students using the Unity engine. Players will explore diverse levels, fight challenging enemies, and master combat mechanics in a quest through dangerous environments.\
@@ -30,7 +31,7 @@ K ....................................Kick Enemy
 
 **OBJECTIVE:**
 
-Reach the end of the level.
+-   Reach the end of the level.
 
 **HOW TO PLAY:**
 
@@ -44,12 +45,12 @@ Reach the end of the level.
 
 **SYSTEM REQUIREMENTS:**
 
-Latest version of a Chromium-based browser.
+-   Latest version of a Chromium-based browser.
 
 Keyboard
 
 **CREDITS:**
 
-Toluwalope Rilwan Adesina, Mohammad Usman Khan, Maciej Dorian Lapczynski, Mithusen Selvarajah
+_Toluwalope Rilwan Adesina, Mohammad Usman Khan, Maciej Dorian Lapczynski, Mithusen Selvarajah
 
-PP1.2 Group D Multi-Platform Game Development Prototype
+PP1.2 Group D Multi-Platform Game Development Prototype_
