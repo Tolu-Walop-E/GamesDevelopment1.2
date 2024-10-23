@@ -23,7 +23,7 @@ A .....................................Face and Move Left
 
 D .....................................Face and Move Right
 
-SPACE................................Shoot Projectile
+SPACE.............................Shoot Projectile
 
 J ...................................Punch Enemy
 
