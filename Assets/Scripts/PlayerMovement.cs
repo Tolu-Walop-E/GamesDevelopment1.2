@@ -59,11 +59,8 @@ public class PlayerController : MonoBehaviour
         
 
         Vector3 movement = new Vector3(moveValue.x, 0.0f, 0.0f);  // Ensure Z movement is 0
-        rb.AddForce(movement * speed * Time.fixedDeltaTime);
-
-        Vector3 currentPosition = rb.position;
-        currentPosition.z = lockedZPosition;  // Lock Z position
-        rb.position = currentPosition;
+        Vector3 newPosition = rb.position + (movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(newPosition);
     }
 
     void Update()
@@ -76,11 +73,11 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
-            TriggerAttack(AttackHitbox[0]);
+            TriggerAttack(AttackHitbox[0], 0);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            TriggerAttack(AttackHitbox[1]);
+            TriggerAttack(AttackHitbox[1], 1);
         }
         
         if (Input.GetKeyDown(KeyCode.Space))
@@ -91,18 +88,26 @@ public class PlayerController : MonoBehaviour
     }
 
     // Attack logic
-    private void TriggerAttack(Collider col)
+    private void TriggerAttack(Collider col, int type)
     {
         Debug.Log(col.name);
-        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Enemy"));
         foreach (Collider c in cols)
         {
-            if (c.transform.parent.parent == transform)
+            if (c.transform.parent == transform)
             {
                 continue;
             }
             else
             {
+                if (type == 0)
+                {
+                    c.SendMessageUpwards("TakeDamage", 10);
+                }
+                else if (type == 1)
+                {
+                    c.SendMessageUpwards("TakeDamage", 15);
+                }
                 Debug.Log(c.name);
             }
         }
@@ -143,6 +148,14 @@ public class PlayerController : MonoBehaviour
         // Re-enable movement after a short delay (optional)
         Invoke(nameof(EnableMovement), 0.1f);  // Give physics engine a moment to update the position
     }
+
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    if (hit.gameObject.CompareTag("Terrain"))
+    //    {
+    //        Respawn(respawnPosition);
+    //    }
+    //}
 
     void EnableMovement()
     {

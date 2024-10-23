@@ -6,7 +6,6 @@ public class EnemyAi : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    
 
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -14,14 +13,14 @@ public class EnemyAi : MonoBehaviour
 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;  
+    public GameObject projectile;
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    public float accuracy = 100f; 
+    public float accuracy = 100f;
 
-    private float checkInterval = 0.5f; 
+    private float checkInterval = 0.5f;
     private float checkTimer = 0f;
 
     private void Awake()
@@ -36,7 +35,6 @@ public class EnemyAi : MonoBehaviour
     void Update()
     {
         checkTimer += Time.deltaTime;
-
 
         if (checkTimer >= checkInterval)
         {
@@ -56,6 +54,7 @@ public class EnemyAi : MonoBehaviour
 
         if (walkPointSet)
         {
+            // Restricting movement to X-axis (keeping Y and Z constant)
             Vector3 targetPosition = new Vector3(walkPoint.x, transform.position.y, transform.position.z);
             agent.SetDestination(targetPosition);
 
@@ -69,9 +68,10 @@ public class EnemyAi : MonoBehaviour
     private void SearchWalkPoint()
     {
         float randomX = Random.Range(-walkPointRange, walkPointRange);
+        // Restrict walkPoint to X-axis, keeping Y and Z constant
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
 
-        if (Physics.Raycast(new Vector3(walkPoint.x, transform.position.y, walkPoint.z), -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(new Vector3(walkPoint.x, transform.position.y, transform.position.z), -transform.up, 2f, whatIsGround))
         {
             walkPointSet = true;
         }
@@ -79,6 +79,7 @@ public class EnemyAi : MonoBehaviour
 
     private void ChasePlayer()
     {
+        // Restricting chase movement to X-axis (keeping Y and Z constant)
         Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, transform.position.z);
         agent.SetDestination(targetPosition);
     }
@@ -94,14 +95,11 @@ public class EnemyAi : MonoBehaviour
         {
             GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
 
-
             projectileInstance.transform.localScale = transform.localScale * 0.5f;
 
             Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
 
-
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
-
 
             Vector3 inaccurateDirection = AddInaccuracy(directionToPlayer, accuracy);
 
@@ -119,19 +117,14 @@ public class EnemyAi : MonoBehaviour
         alreadyAttacked = false;
     }
 
-
     private Vector3 AddInaccuracy(Vector3 originalDirection, float accuracy)
     {
-
         float inaccuracyFactor = (100f - accuracy) / 100f;
 
-  
         float randomOffsetX = Random.Range(-inaccuracyFactor, inaccuracyFactor);
         float randomOffsetY = Random.Range(-inaccuracyFactor, inaccuracyFactor);
 
-
         Vector3 inaccurateDirection = new Vector3(originalDirection.x + randomOffsetX, originalDirection.y + randomOffsetY, originalDirection.z);
-
 
         return inaccurateDirection.normalized;
     }

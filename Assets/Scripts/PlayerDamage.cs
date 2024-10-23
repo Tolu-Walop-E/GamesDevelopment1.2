@@ -7,9 +7,9 @@ public class PlayerDamage : MonoBehaviour
 {
     public Image healthBar;
     public float totalHealth = 100f;
-    public Vector3 respawnPosition;  
+    public Vector3 respawnPosition;
 
-    private PlayerController playerMovement; 
+    private PlayerController playerMovement;
 
     void Start()
     {

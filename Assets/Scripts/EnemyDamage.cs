@@ -17,7 +17,7 @@ public class EnemyDamage : MonoBehaviour
     {
         totalHealth -= damage;
 
-        if (totalHealth == 0)
+        if (totalHealth <= 0)
         {
             Destroy(gameObject);
         }
