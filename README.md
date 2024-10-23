@@ -51,6 +51,6 @@ Keyboard
 
 **CREDITS:**
 
-_Toluwalope Rilwan Adesina, Mohammad Usman Khan, Maciej Dorian Lapczynski, Mithusen Selvarajah
+*Toluwalope Rilwan Adesina, Mohammad Usman Khan, Maciej Dorian Lapczynski, Mithusen Selvarajah
 
-PP1.2 Group D Multi-Platform Game Development Prototype_
+PP1.2 Group D Multi-Platform Game Development Prototype*
