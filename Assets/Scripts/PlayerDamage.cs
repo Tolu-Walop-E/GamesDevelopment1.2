@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,13 +12,11 @@ public class PlayerDamage : MonoBehaviour
 
     void Start()
     {
-
         playerMovement = GetComponent<PlayerController>();
-
 
         if (respawnPosition == Vector3.zero)
         {
-            respawnPosition = transform.position;
+            respawnPosition = new Vector3(-83, 1, -0.344f);  // Default respawn point if not set
         }
     }
 
@@ -38,12 +35,9 @@ public class PlayerDamage : MonoBehaviour
     {
         Debug.Log("Player is respawning...");
 
-
         playerMovement.Respawn(respawnPosition);  
 
-        totalHealth = 100f;  
+        totalHealth = 100f;  // Reset health
         healthBar.fillAmount = totalHealth / 100f;  
-
-
     }
 }

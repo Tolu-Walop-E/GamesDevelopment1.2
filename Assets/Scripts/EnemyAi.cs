@@ -55,7 +55,7 @@ public class EnemyAi : MonoBehaviour
         if (walkPointSet)
         {
             // Restricting movement to X-axis (keeping Y and Z constant)
-            Vector3 targetPosition = new Vector3(walkPoint.x, transform.position.y, transform.position.z);
+            Vector3 targetPosition = new Vector3(walkPoint.x, transform.position.y,0);
             agent.SetDestination(targetPosition);
 
             if (Vector3.Distance(transform.position, targetPosition) < 1f)
@@ -69,9 +69,9 @@ public class EnemyAi : MonoBehaviour
     {
         float randomX = Random.Range(-walkPointRange, walkPointRange);
         // Restrict walkPoint to X-axis, keeping Y and Z constant
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, 0);
 
-        if (Physics.Raycast(new Vector3(walkPoint.x, transform.position.y, transform.position.z), -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(new Vector3(walkPoint.x, transform.position.y, 0), -transform.up, 2f, whatIsGround))
         {
             walkPointSet = true;
         }
@@ -80,7 +80,7 @@ public class EnemyAi : MonoBehaviour
     private void ChasePlayer()
     {
         // Restricting chase movement to X-axis (keeping Y and Z constant)
-        Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, 0);
         agent.SetDestination(targetPosition);
     }
 
@@ -88,7 +88,7 @@ public class EnemyAi : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        Vector3 lookAtPosition = new Vector3(player.position.x, transform.position.y,0);
         transform.LookAt(lookAtPosition);
 
         if (!alreadyAttacked)
@@ -124,7 +124,7 @@ public class EnemyAi : MonoBehaviour
         float randomOffsetX = Random.Range(-inaccuracyFactor, inaccuracyFactor);
         float randomOffsetY = Random.Range(-inaccuracyFactor, inaccuracyFactor);
 
-        Vector3 inaccurateDirection = new Vector3(originalDirection.x + randomOffsetX, originalDirection.y + randomOffsetY, originalDirection.z);
+        Vector3 inaccurateDirection = new Vector3(originalDirection.x + randomOffsetX, originalDirection.y + randomOffsetY, 0);
 
         return inaccurateDirection.normalized;
     }
